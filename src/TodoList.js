@@ -20,9 +20,7 @@ class TodoList extends Component{
         )
     }
     handleInputChange(e) {
-        this.setState({
-            inputValue:e.target.value
-        })
+        this.setState({inputVaule: e.target.value});
     }
 }
 
