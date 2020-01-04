@@ -23,6 +23,7 @@ class TodoList extends Component{
             </Fragment>
         )
     }
+    
     handleInputChange(e) {
         this.setState({inputValue: e.target.value});
     }
