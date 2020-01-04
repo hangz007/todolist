@@ -11,13 +11,18 @@ class TodoList extends Component{
     render() {
         return (
             <Fragment>
-                <div><input value={this.state.inputVaule} /><button>提交</button></div>
+                <div><input value={this.state.inputVaule} onChange={this.handleInputChange.bind(this)} /><button>提交</button></div>
                 <ul>
                     <li>学英语</li>
                     <li>Learning React</li>
                 </ul>
             </Fragment>
         )
+    }
+    handleInputChange(e) {
+        this.setState({
+            inputValue:e.target.value
+        })
     }
 }
 
