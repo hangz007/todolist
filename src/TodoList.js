@@ -4,23 +4,33 @@ class TodoList extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            inputVaule:'',
+            inputValue:'',
             list:[]
         }
     }
     render() {
         return (
             <Fragment>
-                <div><input value={this.state.inputVaule} onChange={this.handleInputChange.bind(this)} /><button>提交</button></div>
+                <div><input value={this.state.inputValue} onChange={this.handleInputChange.bind(this)} />
+                <button onClick={this.handleBtnClick.bind(this)} >提交</button></div>
                 <ul>
-                    <li>学英语</li>
-                    <li>Learning React</li>
+                    {
+                        this.state.list.map(
+                            (item,index)=> {return <li key={index} >{item}</li>}
+                        )
+                     }
                 </ul>
             </Fragment>
         )
     }
     handleInputChange(e) {
-        this.setState({inputVaule: e.target.value});
+        this.setState({inputValue: e.target.value});
+    }
+    handleBtnClick() {
+        this.setState({
+            list:[...this.state.list,this.state.inputValue],
+            inputValue:''
+        })
     }
 }
 
