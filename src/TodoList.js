@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import TodoItem from './TodoItem';
 import './style.css';
-import Test from './Test';
+import axios from 'axios';
 
 class TodoList extends Component{
     constructor(props) {
@@ -16,20 +16,38 @@ class TodoList extends Component{
     }
 
     render() {
-        console.log('render');
         return (
             <Fragment>
                 <div>
                     <label htmlFor="insertArea" >输入内容</label>
-                    <input id="insertArea" className="input" value={this.state.inputValue} onChange={this.handleInputChange} />
+                    <input id="insertArea" 
+                    className="input" 
+                    value={this.state.inputValue} 
+                    onChange={this.handleInputChange} />
                     <button onClick={this.handleBtnClick} >提交</button>
                 </div>
                 <ul>
                     {this.getTodoItem()}
                 </ul>
-                <Test content={this.state.inputValue} />
             </Fragment>
         )
+    }
+
+    componentDidMount() {
+        axios.get('/api/todolist')
+        .then(
+            (res)=> {
+                console.log(res.data);
+                this.setState(
+                    () =>({list: [...res.data]})
+                )
+            }
+        )
+        .catch(
+            ()=>{
+                alert('error')
+            }
+        );
     }
     
     getTodoItem() {
