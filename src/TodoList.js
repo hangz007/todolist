@@ -20,7 +20,6 @@ class TodoList extends Component {
             </ul>
         </div>
         );
-
     }
 
 }
